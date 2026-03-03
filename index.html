@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>8/3 - Chúc mừng Ngày Quốc tế Phụ nữ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Màn hình nhập mật mã (Lock Screen) -->
+  <div id="lock-screen" class="screen active">
+    <div class="lock-container">
+      <div class="lock-avatar">
+        <img src="images/z7583561719582_c395c658573a0e5dde5e6eced0afc59c.jpg" alt="8/3">
+      </div>
+      <p class="lock-label">Nhập mật mã để mở</p>
+      <div class="passcode-dots">
+        <span class="dot" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+      </div>
+      <div class="passcode-error" id="passcode-error">Mật mã không đúng</div>
+      <div class="numpad">
+        <button class="num-btn" data-num="1">1</button>
+        <button class="num-btn" data-num="2">2</button>
+        <button class="num-btn" data-num="3">3</button>
+        <button class="num-btn" data-num="4">4</button>
+        <button class="num-btn" data-num="5">5</button>
+        <button class="num-btn" data-num="6">6</button>
+        <button class="num-btn" data-num="7">7</button>
+        <button class="num-btn" data-num="8">8</button>
+        <button class="num-btn" data-num="9">9</button>
+        <button class="num-btn empty"></button>
+        <button class="num-btn" data-num="0">0</button>
+        <button class="num-btn delete" data-action="delete">⌫</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trang chính -->
+  <div id="main-screen" class="screen">
+    <div class="main-header">
+      <h1>💐 Chúc mừng 8/3</h1>
+    </div>
+    <div class="main-grid">
+      <div class="card" id="card-music">
+        <div class="card-icon">🎵</div>
+        <h3>Nhạc</h3>
+        <p>Nghe nhạc yêu thích</p>
+      </div>
+      <div class="card" id="card-letter">
+        <div class="card-icon">💌</div>
+        <h3>Thư</h3>
+        <p>Bức thư đặc biệt</p>
+      </div>
+      <div class="card" id="card-photos">
+        <div class="card-icon">📷</div>
+        <h3>Ảnh</h3>
+        <p>Kỷ niệm của chúng ta</p>
+      </div>
+      <div class="card" id="card-gift">
+        <div class="card-icon">🎁</div>
+        <h3>Quà</h3>
+        <p>Món quà bất ngờ</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Nhạc -->
+  <div id="modal-music" class="modal">
+    <div class="modal-content music-modal">
+      <button class="modal-close">&times;</button>
+      <h2>🎵 Nhạc </h2>
+        <div class="soundcloud-list" id="soundcloud-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Thư -->
+  <div id="modal-letter" class="modal">
+    <div class="modal-content letter-modal">
+      <button class="modal-close">&times;</button>
+      <div class="letter-paper">
+        <h2>💌 Thư gửi em</h2>
+        <div class="letter-body" id="letter-body">
+          <p>Em yêu,</p>
+          <p>Nhân ngày 8 tháng 3 - Ngày Quốc tế Phụ nữ, anh muốn gửi đến em những lời chúc chân thành nhất. Cảm ơn em đã luôn bên cạnh anh, chia sẻ mọi niềm vui nỗi buồn trong 2 năm qua.</p>
+          <p>Em là người tuyệt vời nhất đối với anh. Chúc em luôn xinh đẹp, hạnh phúc và thành công trong mọi việc. Anh yêu em nhiều! 💕</p>
+          <p class="letter-sign">— Với tình yêu thương 💗</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Ảnh -->
+  <div id="modal-photos" class="modal">
+    <div class="modal-content photos-modal">
+      <button class="modal-close">&times;</button>
+      <h2 class="banner-text top"><span>Happy International Women's Day 🌸 Happy International Women's Day 🌸 </span></h2>
+      <div class="photos-container">
+        <div class="photo-row row-top">
+          <div class="photo-track">
+            <div class="photo-slide" id="photo-slide-top"></div>
+          </div>
+        </div>
+        <div class="photo-row row-bottom">
+          <div class="photo-track">
+            <div class="photo-slide" id="photo-slide-bottom"></div>
+          </div>
+        </div>
+      </div>
+      <h2 class="banner-text bottom"><span>Happy International Women's Day 💕 Happy International Women's Day 💕 </span></h2>
+    </div>
+  </div>
+
+  <!-- Modal xem ảnh phóng to -->
+  <div id="modal-photo-view" class="modal photo-view-modal">
+    <button class="modal-close">&times;</button>
+    <img id="photo-full" src="" alt="Ảnh phóng to">
+  </div>
+
+  <!-- Modal Quà -->
+  <div id="modal-gift" class="modal">
+    <div class="modal-content gift-modal">
+      <button class="modal-close">&times;</button>
+      <div id="flower-container"></div>
+      <div id="falling-hearts"></div>
+    </div>
+  </div>
+
+  <script>
+    window.PHOTO_FILES = ["anh1.jpg", "anh2.jpg", "anh3.jpg", "anh4.jpg", "anh5.jpg", "anh6.jpg"];
+  </script>
+  <script src="app.js"></script>
+</body>
+</html>
